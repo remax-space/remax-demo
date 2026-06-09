@@ -168,6 +168,40 @@ async function carregarDados(){
   return false;
 }
 
+// ===== PRÉ-CARREGAR DADOS DEMO =====
+function carregarDadosDemo(){
+  // Leads demo
+  llD = [
+    {id:"LL-001",nome:"Sandra Reis",tel:"(64)99002-0001",tipo:"Casa",bairro:"Res. Bela Vista",valor:1500,st:"Novo",dt:"2026-06-01",obs:"Procura 3 quartos"},
+    {id:"LL-002",nome:"Tiago Nunes",tel:"(64)99002-0002",tipo:"Apartamento",bairro:"Centro",valor:1200,st:"Contato",dt:"2026-06-03",obs:"Casal sem filhos"}
+  ];
+  ldD = {
+    "Novo":[
+      {id:"LD-001",nome:"Roberta Maia",tel:"(64)99005-0001",tipo:"Casa",bairro:"Parque Verde",valor:380000,st:"Novo",dt:"2026-06-02",obs:"Quer financiar",corretor:"Carlos"},
+      {id:"LD-002",nome:"Sérgio Pinto",tel:"(64)99005-0002",tipo:"Apartamento",bairro:"Centro",valor:250000,st:"Novo",dt:"2026-06-05",obs:"À vista",corretor:"Fernanda"}
+    ],
+    "Contato":[{id:"LD-003",nome:"Paula Braga",tel:"(64)99005-0003",tipo:"Terreno",bairro:"Expansão Norte",valor:130000,st:"Contato",dt:"2026-05-28",obs:"Quer construir",corretor:"Carlos"}],
+    "Visita":[], "Proposta":[], "Fechado":[], "Perdido":[]
+  };
+  agD = [
+    {id:"AG-001",titulo:"Visita - Casa Res. Bela Vista",dt:"2026-06-12",hr:"10:00",end:"Rua das Flores, 100",resp:"Carlos",tipo:"Visita",st:"Agendado"},
+    {id:"AG-002",titulo:"Assinatura CT-005",dt:"2026-06-15",hr:"14:00",end:"CENTRO",resp:"Fernanda",tipo:"Reunião",st:"Agendado"}
+  ];
+  propCad = [
+    {id:1,nome:"Ana Lima",cpf:"111.222.333-44",tel:"(64)99004-0001",email:"ana@email.com",banco:"Itaú",agencia:"1234",conta:"56789-0",pix:"ana@email.com"},
+    {id:2,nome:"Pedro Souza",cpf:"222.333.444-55",tel:"(64)99004-0002",email:"pedro@email.com",banco:"Bradesco",agencia:"5678",conta:"12345-6",pix:"pedro@email.com"},
+    {id:3,nome:"Beatriz Alves",cpf:"333.444.555-66",tel:"(64)99004-0003",email:"beatriz@email.com",banco:"Caixa",agencia:"9012","conta":"34567-8",pix:"beatriz@email.com"},
+    {id:4,nome:"Carlos Mendes",cpf:"444.555.666-77",tel:"(64)99004-0004",email:"carlos.m@email.com",banco:"Santander",agencia:"3456",conta:"78901-2",pix:"carlos.m@email.com"}
+  ];
+  inqCad = [
+    {id:1,nome:"João Silva",cpf:"555.666.777-88",tel:"(64)99006-0001",email:"joao@email.com"},
+    {id:2,nome:"Maria Oliveira",cpf:"666.777.888-99",tel:"(64)99006-0002",email:"maria@email.com"},
+    {id:3,nome:"Lucia Ferreira",cpf:"777.888.999-00",tel:"(64)99006-0003",email:"lucia@email.com"},
+    {id:4,nome:"Roberto Costa",cpf:"888.999.000-11",tel:"(64)99006-0004",email:"roberto@email.com"}
+  ];
+}
+window.carregarDadosDemo = carregarDadosDemo;
+
 // Salvar contrato locação no Supabase
 async function salvarCTNuvem(c){
   try{
@@ -828,6 +862,7 @@ function finalizarLogin(){
   }, 300);
   // Carregar dados da nuvem e mostrar dashboard
   carregarDados().then(function(ok){
+    carregarDadosDemo(); // Garante dados demo mesmo sem Supabase
     gP('dashboard');
     if(ok){
       var t=document.getElementById('toast-nuvem');
